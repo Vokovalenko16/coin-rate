@@ -20,10 +20,7 @@ const db = require("./config/keys").mongoURI;
 
 // Connect to MongoDB
 mongoose
-  .connect(
-    db,
-    { useNewUrlParser: true }
-  )
+  .connect(db, { useNewUrlParser: true })
   .then(() => console.log("MongoDB successfully connected"))
   .catch(err => console.log(err));
 
@@ -35,6 +32,8 @@ require("./config/passport")(passport);
 
 // Routes
 app.use("/api/users", users);
+require("./routes/api/apiRoutes")(app);
+require("./routes/api/htmlRoutes")(app);
 
 const port = process.env.PORT || 5000;
 
