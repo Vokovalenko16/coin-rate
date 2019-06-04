@@ -1,7 +1,7 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
+var db = require("./models");
 
 const users = require("./routes/api/users");
 
@@ -14,15 +14,6 @@ app.use(
   })
 );
 app.use(bodyParser.json());
-
-// DB Config
-const db = require("./config/keys").mongoURI;
-
-// Connect to MongoDB
-mongoose
-  .connect(db, { useNewUrlParser: true })
-  .then(() => console.log("MongoDB successfully connected"))
-  .catch(err => console.log(err));
 
 // Passport middleware
 app.use(passport.initialize());
@@ -37,4 +28,16 @@ require("./routes/api/htmlRoutes")(app);
 
 const port = process.env.PORT || 5000;
 
-app.listen(port, () => console.log(`Server up and running on port ${port} !`));
+var syncOptions = { force: false };
+// If running a test, set syncOptions.force to true
+// clearing the `testdb`
+if (process.env.NODE_ENV === "test") {
+  syncOptions.force = true;
+}
+
+// Starting the server, syncing our models ------------------------------------/
+db.sequelize.sync(syncOptions).then(function() {
+  app.listen(port, function() {
+    console.log("==> 🌎  Start backend server on port %s", port);
+  });
+});
