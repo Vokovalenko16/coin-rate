@@ -12,7 +12,7 @@ class CoinBoard extends Component {
   };
 
   render() {
-    const { user } = this.props.auth;
+    //    const { user } = this.props.auth;
 
     return (
       <div className="CodeBoard container">
@@ -26,6 +26,12 @@ class CoinBoard extends Component {
               alt="cobinhood"
               style={{ width: "100%", height: "300px" }}
             />
+            <div className="lambo_1">
+              <img
+                src="http://www.pngpix.com/wp-content/uploads/2016/06/PNGPIX-COM-Lamborghini-Huracan-Green-Car-PNG-Image.png"
+                alt="car"
+              />
+            </div>
           </div>
           <div className="binance col s6">
             <img
@@ -33,6 +39,12 @@ class CoinBoard extends Component {
               alt="binance"
               style={{ width: "100%", height: "300px" }}
             />
+            <div className="lambo_2">
+              <img
+                src="http://pluspng.com/img-png/lamborghini-hd-png--1792.png"
+                alt="car"
+              />
+            </div>
           </div>
         </div>
         <div className="row">
@@ -41,13 +53,6 @@ class CoinBoard extends Component {
         </div>
         <div className="row">
           <div className="landing-copy col s12 center-align">
-            <h4>
-              <b>Hey there,</b> {user.name.split(" ")[0]}
-              <p className="flow-text grey-text text-darken-1">
-                You are logged into a full-stack{" "}
-                <span style={{ fontFamily: "monospace" }}>MERN</span> app 👏
-              </p>
-            </h4>
             <button
               style={{
                 width: "150px",

@@ -35,3 +35,44 @@ code {
   width: 25px;
   height: 35px;
 }
+
+.cobinhood {
+  position: relative;
+}
+.cobinhood > .lambo_1 {
+  position: absolute;
+  display: inline-block;
+  width: 50%;
+  left: 0px;
+  top: 0px;
+  transform: translateX(-15%) translateY(-70%);
+}
+.cobinhood > img {
+  border: 4px solid green;
+}
+.binance > img {
+  border: 4px solid yellow;
+}
+.lambo_1 img {
+  width: 100%;
+}
+
+.binance {
+  position: relative;
+}
+.binance > .lambo_2 {
+  position: absolute;
+  display: inline-block;
+  width: 50%;
+  left: 0px;
+  top: 0px;
+  transform: translateX(115%) translateY(-70%);
+}
+.lambo_2 img {
+  width: 100%;
+}
+
+.RateCard > div {
+  margin-bottom: 5px;
+  padding-bottom: 10px;
+}
