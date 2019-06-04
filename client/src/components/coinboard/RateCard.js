@@ -1,17 +1,33 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 class RateCard extends Component {
-  state = {};
+  state = {
+    btc: "",
+    eth: "",
+    xrp: "",
+    eos: "",
+    neo: "",
+    cancelTokenSource: {}
+  };
   componentDidMount() {
+    const CancelToken = axios.CancelToken;
+    const source = CancelToken.source();
+    this.setState({
+      ...this.state,
+      cancelTokenSource: source
+    });
+
     this.interval = setInterval(() => {
       this.props.getDataFunc(res => {
-        //        console.log("rateCard", res);
-        this.setState({ ...res.data });
-      });
+        //        console.log(res.data);
+        this.setState({ ...this.state, ...res.data });
+      }, this.state.cancelTokenSource.token);
     }, 3000);
   }
   componentWillUnmount() {
     clearInterval(this.interval);
+    this.state.cancelTokenSource.cancel();
   }
   render() {
     return (
